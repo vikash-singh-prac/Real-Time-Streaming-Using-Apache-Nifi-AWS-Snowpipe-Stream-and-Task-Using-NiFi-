@@ -4,7 +4,7 @@ The project is aimed to stream data in real time using Apache NiFi, AWS and Snow
 
 ## Architecture Diagram
 
-![Architecture Diagram](https://raw.githubusercontent.com/vikash-singh-prac/Real-Time-Streaming-Using-Apache-Nifi-AWS-Snowpipe-Stream-and-Task-Using-NiFi-/main/Screenshot%202024-03-09%20133200.png)
+![Architecture Diagram](.misc\Architecture_Diagram.png)
 
 ### Apache Nifi
 
