@@ -62,7 +62,31 @@ Details: EC2 (Elastic Compute Cloud) instances are virtual servers provided by A
     - Allow ports 4000 - 38888
     - Connect to ec2 via ssh
 
-    
+### Snowflake:
+
+##### What is Snowflake?
+
+Snowflake is a cloud-based data warehousing platform designed to handle large volumes of data and enable efficient analytics.
+
+##### Key Features:
+
+Cloud-Native Architecture: Snowflake is built for the cloud, offering scalability, elasticity, and performance without the need for hardware procurement or management.
+Separation of Compute and Storage: Snowflake separates compute resources from storage, allowing users to scale each independently based on workload requirements.
+Multi-Cluster Shared Data Architecture (MPP): Snowflake employs a multi-cluster architecture to distribute and parallelize data processing, enabling fast query performance.
+Data Sharing: Snowflake allows users to securely share data across organizations or between different accounts within Snowflake, facilitating collaboration and data monetization.
+Automatic Management: Snowflake handles tasks such as infrastructure provisioning, software updates, and performance optimization automatically, reducing administrative overhead.
+Native Support for Semi-Structured Data: Snowflake natively supports semi-structured data formats like JSON, Avro, and Parquet, enabling flexibility in data ingestion and analysis.
+Built-in Security and Compliance: Snowflake provides robust security features such as encryption, access controls, and audit logging to ensure data protection and regulatory compliance.
+
+##### Why Use Snowflake?
+
+Scalability: Snowflake can effortlessly scale to accommodate growing data volumes and user concurrency.
+Performance: Its architecture enables high-performance analytics and query processing, even with large datasets.
+Ease of Use: Snowflake's intuitive interface and SQL-based query language make it easy for users to get started with data analytics.
+Cost-Effectiveness: With pay-as-you-go pricing and the ability to scale resources as needed, Snowflake offers cost-effective data warehousing solutions.
+Data Sharing: Snowflake's data sharing capabilities facilitate collaboration and data exchange across organizational boundaries.
+
+
 
 
 
