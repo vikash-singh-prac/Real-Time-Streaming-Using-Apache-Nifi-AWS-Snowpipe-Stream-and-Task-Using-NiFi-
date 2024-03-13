@@ -6,6 +6,66 @@ The project is aimed to stream data in real time using Apache NiFi, AWS and Snow
 
 ![Architecture Diagram](https://raw.githubusercontent.com/vikash-singh-prac/Real-Time-Streaming-Using-Apache-Nifi-AWS-Snowpipe-Stream-and-Task-Using-NiFi-/dev/.misc/Architecture_Diagram.png)
 
+### Folder Structure
+
+C:.
+|   README.md
+|   
++---.misc
+|       Architecture_Diagram.png
+|       
++---Docker
+|       Connected to Jupyter, Zookeeper, Nifi.png
+|       Copy docker_exp folder with yaml file.png
+|       Docker Compose Installation.png
+|       Docker Compose pip package installation.png
+|       Docker Installation.png
+|       Docker-compose up.png
+|       Jupyter Notebook Lanuched on EC2.png
+|       New user.png
+|       Nifi Launched on EC2.png
+|       Python Installation.png
+|       Required permissions to docker compose.png
+|       Start docker.png
+|       Update check.png
+|       yaml file copied.png
+|
++---EC2
+|       AWS EC2_Setting_1.png
+|       AWS EC2_Setting_2.png
+|       EC2 Connection.png
+|       Inbound Traffic Rules Update.png
+|
++---file
+|   \---docker_exp
+|           docker-compose.yml
+|
++---Jupyter Notebook
+|       Data_Generation.ipynb
+|       JupyterLab_Docker.png
+|
++---Nifi
+|       Accessing the data.png
+|       Inside Nifi Docker Image.png
+|       Nifi_Processor_Group.png
+|       Settings_1.png
+|       Settings_10.png
+|       Settings_2.png
+|       Settings_3.png
+|       Settings_4.png
+|       Settings_5.png
+|       Settings_6.png
+|       Settings_7.png
+|       Settings_8.png
+|       Settings_9.png
+|
++---S3
+|       Files_Uploaded_S3.png
+|       S3 folder structure.png
+|
+\---Snowflake
+        SCD1.sql
+
 ### Apache Nifi
 
 ##### What is Apache Nifi?
