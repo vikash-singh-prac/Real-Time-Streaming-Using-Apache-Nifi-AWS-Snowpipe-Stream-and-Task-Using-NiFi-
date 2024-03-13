@@ -7,8 +7,9 @@ The project is aimed to stream data in real time using Apache NiFi, AWS and Snow
 ![Architecture Diagram](https://raw.githubusercontent.com/vikash-singh-prac/Real-Time-Streaming-Using-Apache-Nifi-AWS-Snowpipe-Stream-and-Task-Using-NiFi-/dev/.misc/Architecture_Diagram.png)
 
 ### Folder Structure
-
+```
 C:.
+
 |   README.md
 |   
 +---.misc
@@ -65,6 +66,8 @@ C:.
 |
 \---Snowflake
         SCD1.sql
+
+```
 
 ### Apache Nifi
 
