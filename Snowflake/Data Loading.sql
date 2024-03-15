@@ -1,7 +1,7 @@
 // Creating external stage (create your own bucket)
 CREATE OR REPLACE STAGE SCD_DEMO.SCD2.customer_ext_stage
     url='s3://real-time-data-stream/stream-data'
-    credentials=(aws_key_id='AKIA3MSV6BKSLMGSG7FE' aws_secret_key='HKd6VqUt9gtsDJBuvtle285sp1QtGOEM3/XtMqpU');
+    credentials=(aws_key_id='AKIA3MSV6BKSLMGSG7FE' aws_secret_key='');
 
 
 // File format for incoming files in stage
