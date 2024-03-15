@@ -9,7 +9,6 @@ The project is aimed to stream data in real time using Apache NiFi, AWS and Snow
 ### Folder Structure
 ```
 C:.
-
 |   README.md
 |   
 +---.misc
@@ -65,8 +64,14 @@ C:.
 |       S3 folder structure.png
 |
 \---Snowflake
+        Data Loading.sql
+        Event Notification_1.png
+        Event Notification_2.png
+        Merge update execution result.png
+        Merge_first Execution result.png
         SCD1.sql
-
+        SCD2.sql
+        Table Creation.sql
 ```
 
 ### Apache Nifi
