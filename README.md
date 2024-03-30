@@ -155,7 +155,101 @@ Snowflake is a cloud-based data warehousing platform designed to handle large vo
 - Data Sharing: Snowflake's data sharing capabilities facilitate collaboration and data exchange across organizational boundaries.
 
 
+### Steps for Execution:
 
+
+##### EC2 connection:
+- Connection to EC2 instance done using SSH client
+- Navigate to the folder having the .pem file with access keys 
+- Copy and run the SSH client command from AWS
+
+
+Now that we have started the EC2 instance on our computer, we will install Docker on it:
+1. To check and update the software
+	sudo yum update -y
+2. Install docker on the EC2 instance 
+	sudo yum install docker 
+3.  Install docker composer
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+4. Execution permission to Docker Compose
+	sudo chmod +x /usr/local/bin/docker-compose
+	sudo gpasswd -a $USER docker
+5. Create New user for Docker 
+	newgrp docker
+6. Installing pip python package 
+	sudo yum install python-pip
+7. Installing Docker compose pip package. This is used to create different fucntionalities defined in our .yml file. 
+   The .yml file, usually named "docker-compose.yml", is used to configure the services, networks, and volumes needed for your application.  
+	sudo pip install docker-compose
+8. We will create the .yml file on our system and create the folder with the file onto the docker image 
+  Copy files to EC2
+	scp -r -i real_time_project.pem docker-exp  ec2-user@ec2-18-216-239-206.us-east-2.compute.amazonaws.com:/home/ec2-user/docker_exp
+	scp -r -i <<your pem file name>.pem> <folder_name in which the .yml file is stored(please note this folder should be in the same folder as the .pem file)> <your ec2 instance name, can be found under Public IPv4 DNS>:/home/ec2-user/docker_exp(this folder is being created on the ec2 instance)
+
+- Create your "docker-compose.yml" file and store it in a folder with the folder having .pem file 
+- The above command copies the .yml file on the ec2 instance  
+9. Now to check if Docker is installed 
+	docker
+10. To start Docker Container
+	sudo systemctl start docker
+11. To check if docker container has started 
+	docker ps (Used to check the different images which are running on the EC2 machine)
+12. Next Step is to pull all the images defined in the docker-compose.yml file 
+13. Navigate to the docker_exp folder with the docker-compose.yml file and run the below command 
+	docker-compose up
+	This will start pulling images of the services listed in the .yml file 
+14. We have to note that since we have given specific port numbers to access the services in the .yml file, we would need to update the security rules for inbound traffic. For that, go to EC2 instance and add inbound rules (refer to the scrrenshot). This is not the best practise
+The best pratise would be to select the Custom TCP option and input the specific pot numbers as given in the .yml file 
+
+
+15. Now go to the Public IPv4 address of your EC2 instance and to the specific ports for Jupyter Notebook and Nifi
+	i.e. http://18.216.239.206:4888/ for Jupyter and http://18.216.239.206:2080/ for NiFi
+
+16. Once we have Jupyter running, we will generate the fake data using Faker module of Python.
+
+17. Now that we have the data generated, we will connect to EC2 instance in another command prompt tab (let the other services running in the initial tab).
+
+18. If we do docker ps here, we have 3 images running for jupyterlab, nifi and zookeeper. Since we have them running we can now enter them individually adn do our work
+
+19. To enter the nifi image we need to run the below command
+	docker exec -i -t nifi bash --> this will take us inside the nifi image 
+
+20. We need to navigate to the generated fake data file. 
+	cd /opt/workspace/nifi/FakeDataset/
+
+
+21. We will now configure the NiFi job: One processor group with ListFile processor --> FetchFile Processor --> PutS3Object
+
+22. Configure the ListFile, FetchFile and PutS3Object
+	- listfile: we need to provide the location of the generated file i.e. /opt/workspace/nifi/FakeDataset/
+	- fetchfile: no need to configure this
+	- puts3object: give the bucket name, folder name (object key), access keyid (create IAM user for this), access secret
+
+23. Run the processor group to upload the files in the S3 bucket.
+
+24. Moving to Snowflake, first create 3 tables: customer (update history), customer_history(scd2 with is_current key) and cusotmer_raw(raw new updates)
+
+25. Create stream on the customer table
+
+26. Create stage on the S3 bucket with all the files and file format for them
+
+27. Now create Snowpipe on the stage to copy all the files into customer_raw table
+
+28. Once we have the Snowpipe created, we will use its notification channel to create a event notification in AWS
+	- configuration: name, prefix, event types, destination: SQS queue, Enter SQS ARN (copy paste the snowpipe notification channel)
+
+29. Post this, we will have the data automatically loaded into the Snowflake customer table  
+
+For the next stage we will try to handle any changes/updates(CDC) being done to the customer data 
+
+30. To capture the incremental data, we will be using MERGE statements for upsert data (insert and update)
+	- To understand this better, initially all the data which is inserted will be automatically stored in customer_raw table (data dump). This does not care about any updates being done
+	- But to only store the incremental data i.e. updated or inserted or deleted we will use merge statement
+	- Customer table is the one which will have all the good data with updated timestamp to show when was it updated  
+
+31. To run this automate the process, we will create a procedure. However, we would still need to run it manually
+
+32. To completely automate the process, we will use Tasks. But first we need to create few roles and provide the necessary permissions
 
 
 
